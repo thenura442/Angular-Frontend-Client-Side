@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular-Frontend-Client-Side';
+
+  isShowDiv: boolean = false;
+
+  clickEvent(){
+    this.isShowDiv = !this.isShowDiv;
+  }
 }
