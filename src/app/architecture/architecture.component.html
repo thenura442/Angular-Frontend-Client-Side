@@ -1,0 +1,50 @@
+<div class="parent-container">
+  <div id="container-new">
+    <header>
+      <nav class="navbar bg-dark">
+        <div class="brand-title brand" >Brand Name</div>
+        <a style="margin-top: 18px;" class="toggle-button" (click)="clickEvent()">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+
+        <div class="navbar-links" [ngClass]="{'active': isShowDiv}">
+          <!-- [ngClass]=step == 'step1' ? 'my_class1' : 'my_class2' -->
+          <ul>
+            <li [ngClass]="{'no-hover': !isUser, 'item' : isUser}" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Home</a></li>
+            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Dashboard</a></li>
+            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Students</a></li>
+            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Modules</a></li>
+            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Lecturers</a></li>
+            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Announcements</a></li>
+            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Staff</a></li>
+            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}" ><a>Moderator</a></li>
+            <li [ngClass]="{'no-hover': !isUser, 'item' : isUser}" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Profile</a></li>
+            <li *ngIf="!isUser" [ngClass]="{'no-hover': !isUser, 'item' : isUser}" routerLink="/login" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Login</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
+
+    <footer>
+        <div class=”footer-content”>
+          <h3>Brainstorm Academy</h3>
+          <p class="footer-p">Better than a thousand days of diligent study is one day with a great teacher.</p>
+          <div>
+            <a href="#" class="link link-logout" >Logout</a>
+          </div>
+        </div>
+        <br>
+
+      <div class=”footer-bottom”>
+        <p>copyright &copy;2023 <a href=”#”></a>  </p>
+      </div>
+    </footer>
+  </div>
+</div>
+

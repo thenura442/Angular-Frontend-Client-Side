@@ -1,11 +1,18 @@
 .bg {
   background-color: #101820FF;
-  top: 0;
+  margin: 0;
+  padding: 20px;
+  overflow:hidden;
+  z-index: 90;
+}
+
+.margin-class {
+  margin-top: 5px;
 }
 
 .container-class {
-  height: 1100px;
   padding-top: 80px;
+  padding-bottom: 50px;
 }
 
 .name {
@@ -17,3 +24,15 @@
   font-style: italic;
 }
 
+
+.fit-class {
+  height: 100vw;
+}
+
+
+.error-class {
+  margin: auto;
+  min-width: 400px;
+  max-width: 530px;
+  text-align: center;
+}

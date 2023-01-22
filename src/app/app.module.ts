@@ -7,18 +7,25 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { StudentRegistrationComponent } from './register/student-registration/student-registration.component';
 
+import { HttpInterceptorProviders } from './services/httpInterceptor/http.interceptor.service';
+import { AppRoutingModule } from './app-routing.module';
+import { ArchitectureComponent } from './architecture/architecture.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    StudentRegistrationComponent
+    StudentRegistrationComponent,
+    ArchitectureComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [HttpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

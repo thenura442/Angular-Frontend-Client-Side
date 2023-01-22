@@ -1,6 +1,16 @@
 <div class=" bg">
 <div class="container">
   <h2 class="text"> Registration </h2>
+  <nav class="navbar navbar-light bg-light search">
+    <form class="form-inline search">
+      <input class="form-control mr-sm-2 find" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </nav>
+  <br>
+  <div [hidden]="postError" class="alert alert-danger err">
+    {{ postErrorMessage }}
+  </div>
   <br><br>
   <form class="form-css" #form ="ngForm" (ngSubmit)="onSubmit(form)">
       <div class="form-group">
@@ -53,11 +63,11 @@
         <input type="password" class="form-control" id="password2" name="password2" [(ngModel)]="password2">
       </div><br>
 
-      <div [hidden]="!postError" class="alert alert-danger">
+      <div [hidden]="!postError" class="alert alert-danger err">
         {{ postErrorMessage }}
       </div>
 
-      <button class="btn btn-primary">
+      <button class="btn btn-primary button-custom">
         Send
       </button><br>
   </form>

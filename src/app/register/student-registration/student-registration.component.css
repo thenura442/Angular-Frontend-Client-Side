@@ -1,7 +1,15 @@
 .bg {
   background-color: white;
-  margin-top: 4%;
-  margin-bottom: 4%;
+  margin-top: 6%;
+  margin-bottom: 6%;
+}
+
+.find {
+  margin-right: 30px;
+}
+
+.err {
+  text-align: center;
 }
 
 .form-css {
@@ -14,4 +22,21 @@
   text-align: center;
 }
 
+.button-custom {
+  width: auto;
+  margin-top: 10px;
+  padding : 10px 50px;
+}
 
+.search {
+  display: flex;
+  justify-content: center;
+}
+
+
+@media (max-width: 800px) {
+  .bg {
+    margin-top: 15%;
+    margin-bottom: 15%;
+  }
+}

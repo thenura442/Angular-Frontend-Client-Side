@@ -14,24 +14,24 @@ export class StudentRegistrationComponent implements OnInit {
 
 
   postError = false;
-  postErrorMessage = "";
+  postErrorMessage = "Hi you are WrongHi you are WrongHi you are WrongHi you are Wrong";
   password2: string = "";
   dob!: Date;
 
 
   orginalStudentSettings: Student = {
-    _id: "123445",
-    name: "",
-    email: "",
-    password: "",
-    nic: "",
+    _id: "812456",
+    name: "venurae",
+    email: "venurae3511@gmail.com",
+    password: "thenura1",
+    nic: "200308300020",
     dob: "2021/03/23",
-    mobile_no: "",
-    address: "",
-    parent_name: "",
-    parent_no: "",
-    landline_no: "",
-    grade: "",
+    mobile_no: "0783323261",
+    address: "272,10c-1,subhamawatha,nugegoda",
+    parent_name: "ajith wijerathne",
+    parent_no: "0724945027",
+    landline_no: "0112821161",
+    grade: "12",
     dle_access: "open",
     url: "http://localhost:5500/api/user/register",
     type: "student"
@@ -42,7 +42,8 @@ export class StudentRegistrationComponent implements OnInit {
   onHttpError(errorResponse:  any): void {
     console.log('error : ',errorResponse);
     this.postError = true;
-    this.postErrorMessage = errorResponse.error.errorMessage;
+    this.postErrorMessage = errorResponse;
+    console.log(this.postErrorMessage)
   }
 
 
@@ -51,17 +52,21 @@ export class StudentRegistrationComponent implements OnInit {
     if(form.valid) {
       this.postError = false;
       this.register.postUserSettingsForm(this.studentSettings).subscribe((result) => {
+        console.log(result);
         if(Object.hasOwn(result,'Error')){
           const status = Object.getOwnPropertyDescriptor(result, 'Status');
           const error = Object.getOwnPropertyDescriptor(result, 'Error');
-          if(status?.value === "500"){
-            this.onHttpError("Something went Wrong try again later,.. if the Issue Persists please Contact Support");
+
+          if(status?.value === "400") {
+            this.onHttpError(error?.value)
           }
           else {
-            this.onHttpError(error?.value)
+            this.onHttpError("Something went Wrong with the Server try again later,.. If the Issue Persists please Contact Support!");
+            console.log(result)
           }
         }
         else {
+          this.postError = false;
           console.log(result)
         }
       });
@@ -75,5 +80,7 @@ export class StudentRegistrationComponent implements OnInit {
     this.isShowDiv = !this.isShowDiv;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.register.getId()
+  }
 }
