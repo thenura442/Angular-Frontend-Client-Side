@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 
-const USER_ID = 'auth-id';
-const USER_EMAIL = 'auth-email';
-const USER_TYPE = 'auth-type';
+const USER_ID = '';
+const USER_EMAIL = '';
+const USER_TYPE = '';
+
+const USER: any = {}
 
 @Injectable({
   providedIn: 'root'
@@ -15,31 +17,42 @@ export class StorageService {
     window.sessionStorage.clear();
   }
 
-  public saveUser(user: string, email: string , type: string): void {
-    window.sessionStorage.removeItem(USER_ID);
-    window.sessionStorage.removeItem(USER_EMAIL);
-    window.sessionStorage.removeItem(USER_TYPE);
-    window.sessionStorage.setItem(USER_ID, user);
-    window.sessionStorage.setItem(USER_EMAIL, email);
-    window.sessionStorage.setItem(USER_TYPE, type);
+  public saveUser(body: any): void {
+    window.sessionStorage.removeItem(USER);
+    window.sessionStorage.setItem(USER, body);
   }
 
   public getUser(): any {
-    const user = window.sessionStorage.getItem(USER_ID);
-    if (user) {
-      return user;
+    const user = window.sessionStorage.getItem(USER);
+    if (user != null) {
+      return JSON.parse(user);
     }
 
     return null;
   }
 
+  // public getType(): any {
+  //   const type = window.sessionStorage.getItem(USER_TYPE);
+  //   if (type != null && type != 'auth-type') {
+  //     return type;
+  //   }
+
+  //   return null;
+  // }
+
+  // public getEmail(): any {
+  //   const email = window.sessionStorage.getItem(USER_EMAIL);
+  //   if (email != null && email != 'auth-type') {
+  //     return email;
+  //   }
+
+  //   return null;
+  // }
+
 
   public isLoggedIn(): boolean {
-    const user = window.sessionStorage.getItem(USER_ID);
-    if (user) {
-      window.sessionStorage.removeItem(USER_ID);
-      window.sessionStorage.removeItem(USER_EMAIL);
-      window.sessionStorage.removeItem(USER_TYPE);
+    const user = window.sessionStorage.getItem(USER);
+    if (user != null) {
       return true;
     }
 
@@ -47,12 +60,7 @@ export class StorageService {
   }
 
 
-  public logOut(): boolean {
-    const user = window.sessionStorage.getItem(USER_ID);
-    if (user) {
-      return true;
-    }
-
-    return false;
+  public logOut(): void {
+    window.sessionStorage.removeItem(USER);
   }
 }

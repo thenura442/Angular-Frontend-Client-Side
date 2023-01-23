@@ -1,18 +1,16 @@
-import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { RegistrationService } from 'src/app/services/registration/registration.service';
-import { Student } from '../../interfaces/student';
+import { Subject } from '../interfaces/subject';
+import { SubjectService } from '../services/subject/subject.service';
 
 @Component({
-  selector: 'app-student-registration',
-  templateUrl: './student-registration.component.html',
-  styleUrls: ['./student-registration.component.css']
+  selector: 'app-subject',
+  templateUrl: './subject.component.html',
+  styleUrls: ['./subject.component.css']
 })
-export class StudentRegistrationComponent implements OnInit, AfterViewInit {
+export class SubjectComponent implements OnInit {
 
-  constructor(private register:RegistrationService, private elementRef: ElementRef, public datepipe: DatePipe) {}
-
+  constructor(private subjectService: SubjectService){}
 
   postErrorFind = false;
   postErrorMessageFind = "";
@@ -25,31 +23,17 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
   postErrorMessage = "";
 
   onTrue = false;
-  date: any;
-  formdate = "";
-  password2: string = "";
-  retypepassword: string = this.password2;
-  dob!: Date;
 
-  orginalStudentSettings: Student = {
+  orginalSubjectSettings: Subject = {
     _id: "",
     name: "",
-    email: "",
-    password: "thenura1",
-    nic: "200308300020",
-    dob: "2021/03/23",
-    mobile_no: "0783323261",
-    address: "272,10c-1,subhamawatha,nugegoda",
-    parent_name: "ajith wijerathne",
-    parent_no: "0724945027",
-    landline_no: "0112821161",
-    grade: "12",
-    dle_access: "open",
-    url: "http://localhost:5500/api/user/register",
-    type: "student"
+    description: "",
+    lecturer_id: "",
+    grade: "",
+    url: "Stringgag/agsgag"
   }
 
-  studentSettings: Student = {...this.orginalStudentSettings}
+  subjectSettings: Subject = {...this.orginalSubjectSettings}
 
   onHttpError(errorResponse:  any): void {
     console.log('error : ',errorResponse);
@@ -61,11 +45,9 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
 
   onSubmit(form: NgForm) {
     console.log('in on submit : '+ form.valid);
-    this.datepipe.transform(this.studentSettings.dob, 'yyyy-MM-dd');
-    console.log(this.studentSettings.dob)
-    if(form.valid && this.studentSettings.password === this.retypepassword && this.studentSettings.grade != 'Select Grade' && this.studentSettings.dle_access != 'Set DLE Access') {
+    if(form.valid && this.subjectSettings.grade != 'Select Grade') {
       this.messages();
-      this.register.postUserSettingsForm(this.studentSettings).subscribe((result) => {
+      this.subjectService.postSubjectForm(this.subjectSettings).subscribe((result: any) => {
         console.log(result);
         if(Object.hasOwn(result,'Error')){
           const status = Object.getOwnPropertyDescriptor(result, 'Status');
@@ -88,20 +70,19 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
     }
   }
 
-  orginalBody: any = {
-    _id: '',
-    type: "student"
+  orginalBody : any = {
+    _id: ''
   }
 
-  body: any = {...this.orginalBody}
+  body : any = {...this.orginalBody}
 
   onFind(search: NgForm){
     console.log("in on submit "+ search.valid);
     console.log(this.body._id);
-    if(search.valid && this.body._id >= 6){
+    if(search.valid ){
       this.messages();
 
-      this.register.findId(this.body).subscribe((result : any) => {
+      this.subjectService.findId(this.body).subscribe((result : any) => {
         if(result == null) {
           this.postErrorMessageFind = "ID not Found!";
           this.postErrorFind = true;
@@ -109,15 +90,12 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
           console.log(result);
         }
         else{
-          this.studentSettings = result;
-          //console.log(this.studentSettings._id)
-          this.password2 = result.password;
+          this.subjectSettings = result;
           this.postErrorFind = false;
           this.postSuccessFind = true;
           this.postSuccessMessageFind = "Found ID "+ result._id ;
           this.onTrue = true;
 
-          this.retypepassword = result.password;
           console.log(result);
         }
       })
@@ -126,11 +104,9 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
 
   onUpdate(form: NgForm){
     console.log("in on submit "+ form.valid);
-    console.log(this.studentSettings.password)
-    console.log(this.password2)
-    if(form.valid && this.studentSettings.password === this.retypepassword && this.studentSettings.grade != 'Select Grade' && this.studentSettings.dle_access != 'Set DLE Access'){
+    if(form.valid && this.subjectSettings.grade != 'Select Grade' ){
       this.messages();
-      this.register.updateBody(this.studentSettings).subscribe((result) => {
+      this.subjectService.updateSubject(this.subjectSettings).subscribe((result) => {
         console.log(result);
         if(Object.hasOwn(result,'Error')){
           const status = Object.getOwnPropertyDescriptor(result, 'Status');
@@ -148,7 +124,7 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
           this.postError = false;
           this.postSuccess = true;
           this.postSuccessMessage = "Update Successful on ID - "+result._id;
-          this.studentSettings = {...this.orginalStudentSettings}
+          this.subjectSettings = {...this.orginalSubjectSettings}
         }
       });
     }
@@ -158,7 +134,7 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
     console.log("in on submit "+ form.valid);
     if(form.valid){
       this.messages();
-      this.register.deleteUser(this.studentSettings).subscribe((result) => {
+      this.subjectService.deleteSubject(this.subjectSettings).subscribe((result) => {
         console.log(result);
         if(Object.hasOwn(result,'Error')){
           const status = Object.getOwnPropertyDescriptor(result, 'Status');
@@ -175,8 +151,8 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
         else {
           this.postError = false;
           this.postSuccess = true;
-          this.postSuccessMessage = this.studentSettings._id+ " Deleted Successfully!"
-          this.studentSettings = {...this.orginalStudentSettings}
+          this.postSuccessMessage = this.subjectSettings._id+ " Deleted Successfully!"
+          this.subjectSettings = {...this.orginalSubjectSettings}
         }
       });
     }
@@ -190,11 +166,6 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
   // }
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit() {
-    this.elementRef.nativeElement.ownerDocument
-    .body.style.backgroundColor = 'white';
   }
 
   messages(): void{

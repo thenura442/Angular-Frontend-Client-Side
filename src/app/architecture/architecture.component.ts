@@ -9,8 +9,10 @@ import { StorageService } from '../services/storage/storage.service';
 })
 export class ArchitectureComponent implements OnInit{
   isShowDiv: boolean = false;
-  user?: string | null;
   isUser: boolean = false;
+  User: boolean = false;
+  user: any = '';
+  Type: string | null = '';
 
   constructor(private router: Router, private storageService: StorageService){}
 
@@ -19,13 +21,24 @@ export class ArchitectureComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.user = this.storageService.getUser();
-    if(this.user === null){
-      this.isUser = true;
+    this.User = this.storageService.isLoggedIn();
+    if(this.User == false){
+      this.isUser = false;
       this.router.navigate(['/login'])
     }
-    else {
-      this.isUser = false;
+    else if(this.User == true){
+      this.isUser = true;
+      this.user = this.storageService.getUser();
+      this.Type = this.user.type;
+      this.router.navigate(['/register/student']);
     }
+  }
+
+  logOut(): void {
+    this.storageService.logOut();
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 }

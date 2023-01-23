@@ -10,17 +10,16 @@
         </a>
 
         <div class="navbar-links" [ngClass]="{'active': isShowDiv}">
-          <!-- [ngClass]=step == 'step1' ? 'my_class1' : 'my_class2' -->
           <ul>
             <li [ngClass]="{'no-hover': !isUser, 'item' : isUser}" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Home</a></li>
-            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Dashboard</a></li>
-            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Students</a></li>
-            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Modules</a></li>
-            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Lecturers</a></li>
-            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Announcements</a></li>
-            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Staff</a></li>
-            <li *ngIf="isUser" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}" ><a>Moderator</a></li>
-            <li [ngClass]="{'no-hover': !isUser, 'item' : isUser}" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Profile</a></li>
+            <li *ngIf="(isUser) && (Type == 'student')" routerLink="/dashboard" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Dashboard</a></li>
+            <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/register/student" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Students</a></li>
+            <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/subject" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Subject</a></li>
+            <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Lecturers</a></li>
+            <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Announcements</a></li>
+            <li *ngIf="(isUser) && (Type == 'moderator')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Staff</a></li>
+            <li *ngIf="(isUser) && (Type == 'admin')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}" ><a>Moderator</a></li>
+            <li [ngClass]="{'no-hover': !isUser, 'item' : isUser}" routerLink="/profile" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Profile</a></li>
             <li *ngIf="!isUser" [ngClass]="{'no-hover': !isUser, 'item' : isUser}" routerLink="/login" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Login</a></li>
           </ul>
         </div>
@@ -35,8 +34,8 @@
         <div class=”footer-content”>
           <h3>Brainstorm Academy</h3>
           <p class="footer-p">Better than a thousand days of diligent study is one day with a great teacher.</p>
-          <div>
-            <a href="#" class="link link-logout" >Logout</a>
+          <div *ngIf="Type != ''">
+            <a class="link link-logout"  routerLink="/architecture" (click)="logOut()">Logout</a>
           </div>
         </div>
         <br>

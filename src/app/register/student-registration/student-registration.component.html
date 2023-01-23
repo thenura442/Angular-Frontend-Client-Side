@@ -1,75 +1,118 @@
 <div class=" bg">
 <div class="container">
-  <h2 class="text"> Registration </h2>
+  <h2 class="text"> Student Details </h2><br>
   <nav class="navbar navbar-light bg-light search">
-    <form class="form-inline search">
-      <input class="form-control mr-sm-2 find" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <form class="form-inline search" #search ="ngForm">
+      <input class="form-control mr-sm-2 find" name="search_id" type="text" placeholder="Search" required aria-label="Search" [(ngModel)]="body._id">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="onFind(search)">Search</button>
     </form>
   </nav>
   <br>
-  <div [hidden]="postError" class="alert alert-danger err">
-    {{ postErrorMessage }}
+  <div [hidden]="!postErrorFind" class="alert alert-danger alert-class">
+    {{ postErrorMessageFind }}
+  </div>
+  <div [hidden]="!postSuccessFind" class="alert alert-success alert-class" role="alert">
+    {{ postSuccessMessageFind }}
   </div>
   <br><br>
-  <form class="form-css" #form ="ngForm" (ngSubmit)="onSubmit(form)">
+  <form class="form-css " #form ="ngForm">
+      <div class="form-group class-bottom" *ngIf="onTrue">
+      <label for="id">ID</label>
+        <input type="text" class="form-control" readonly id="ID" name="ID" [(ngModel)]="studentSettings._id">
+      </div>
       <div class="form-group">
       <label for="name">Name</label>
         <input type="text" class="form-control" required id="name" name="name" [(ngModel)]="studentSettings.name">
       </div><br>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="studentSettings.email">
+        <input type="email" class="form-control" required id="email" name="email" [(ngModel)]="studentSettings.email">
       </div><br>
       <div class="form-group">
         <label for="nic">NIC</label>
-        <input type="text" class="form-control" id="nic" name="nic" [(ngModel)]="studentSettings.nic">
+        <input type="text" class="form-control" required id="nic" name="nic" [(ngModel)]="studentSettings.nic">
       </div><br>
-      <div class="form-group">
+      <div *ngIf="!onTrue" class="form-group">
         <label for="dob">Date of Birth</label>
-        <input type="date" class="form-control" id="dob" name="dob" [(ngModel)]="dob">
+        <input type="date" class="form-control" required id="dob" name="dob" [(ngModel)]="studentSettings.dob">
       </div><br>
       <div class="form-group">
         <label for="mobile_no">Mobile</label>
-        <input type="text" class="form-control" id="mobile_no" name="mobile_no" [(ngModel)]="studentSettings.mobile_no">
+        <input type="text" class="form-control" required id="mobile_no" name="mobile_no" [(ngModel)]="studentSettings.mobile_no">
       </div><br>
       <div class="form-group">
         <label for="grade">Grade</label>
-        <input type="text" class="form-control" id="grade" name="grade" [(ngModel)]="studentSettings.grade">
+        <select class="form-select" required aria-label="Default select example" name="grade" [(ngModel)]="studentSettings.grade">
+          <option selected>Select Grade</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+        </select>
       </div><br>
       <div class="form-group">
         <label for="address">Address</label>
-        <input type="text" class="form-control" id="address" name="address" [(ngModel)]="studentSettings.address">
+        <input type="text" class="form-control" required id="address" name="address" [(ngModel)]="studentSettings.address">
       </div><br>
 
       <div class="form-group">
       <label for="parent_name">Parent Name</label>
-        <input type="text" class="form-control" id="parent_name" name="parent_name" [(ngModel)]="studentSettings.parent_name">
+        <input type="text" class="form-control" required id="parent_name" name="parent_name" [(ngModel)]="studentSettings.parent_name">
       </div><br>
       <div class="form-group">
         <label for="parent_no">Parent Mobile</label>
-        <input type="text" class="form-control" id="parent_no" name="parent_no" [(ngModel)]="studentSettings.parent_no">
+        <input type="text" class="form-control" required id="parent_no" name="parent_no" [(ngModel)]="studentSettings.parent_no">
       </div><br>
       <div class="form-group">
         <label for="landline_no">Landline</label>
-        <input type="text" class="form-control" id="landline_no" name="landline_no" [(ngModel)]="studentSettings.landline_no">
+        <input type="text" class="form-control" required id="landline_no" name="landline_no" [(ngModel)]="studentSettings.landline_no">
+      </div><br>
+      <div class="form-group">
+        <label for="dle_access">DLE Access</label>
+        <select class="form-select" required aria-label="Default select example" required name="dle_access" [(ngModel)]="studentSettings.dle_access">
+          <option selected>Set DLE Access</option>
+          <option value="open">Open</option>
+          <option value="blocked">Blocked</option>
+          <option value="temp">Temporary Block</option>
+        </select>
       </div><br>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="studentSettings.password">
+        <input type="password" class="form-control" required id="password" name="password" [(ngModel)]="studentSettings.password">
       </div><br>
       <div class="form-group">
         <label for="password2">Retype Password</label>
-        <input type="password" class="form-control" id="password2" name="password2" [(ngModel)]="password2">
+        <input type="password" class="form-control" required id="password2" name="password2" [(ngModel)]="retypepassword">
       </div><br>
 
-      <div [hidden]="!postError" class="alert alert-danger err">
+      <div [hidden]="!postError" class="alert alert-danger alert-class">
         {{ postErrorMessage }}
       </div>
+      <div [hidden]="!postSuccess" class="alert alert-success alert-class" role="alert">
+        {{ postSuccessMessage }}
+      </div>
 
-      <button class="btn btn-primary button-custom">
-        Send
-      </button><br>
-  </form>
+      <button *ngIf="!onTrue" class="btn btn-primary button-custom" (click)="onSubmit(form)">
+        Create Student
+      </button>
+      <div class="other-btns">
+        <button *ngIf="onTrue" class="btn btn-primary button-custom" (click)="onUpdate(form)">
+          Update Student
+        </button><br>
+        <button *ngIf="onTrue" class="btn btn-primary button-custom " (click)="onDelete(form)">
+          Delete Student &nbsp;
+        </button>
+      </div>
+  </form><br><br><br>
+
 </div>
 </div>

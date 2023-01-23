@@ -10,6 +10,10 @@ import { StudentRegistrationComponent } from './register/student-registration/st
 import { HttpInterceptorProviders } from './services/httpInterceptor/http.interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
 import { ArchitectureComponent } from './architecture/architecture.component';
+import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DatePipe } from '@angular/common';
+import { SubjectComponent } from './subject/subject.component';
 
 
 @NgModule({
@@ -17,7 +21,10 @@ import { ArchitectureComponent } from './architecture/architecture.component';
     AppComponent,
     LoginComponent,
     StudentRegistrationComponent,
-    ArchitectureComponent
+    ArchitectureComponent,
+    ProfileComponent,
+    DashboardComponent,
+    SubjectComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +32,7 @@ import { ArchitectureComponent } from './architecture/architecture.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [HttpInterceptorProviders],
+  providers: [HttpInterceptorProviders, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

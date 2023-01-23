@@ -1,16 +1,19 @@
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginUser } from '../interfaces/login-user';
 import { LoginService } from '../services/login/login.service';
 import { StorageService } from '../services/storage/storage.service';
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit {
+
+
+  constructor(private loginService: LoginService, private storageService: StorageService, private router: Router, private location: Location){}
 
   originalLoginForm: LoginUser = {
     email: "",
@@ -20,14 +23,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   loginForm: LoginUser = {...this.originalLoginForm}
 
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
-  roles: string[] = [];
   postError = false;
   postErrorMessage = "";
-
-  constructor(private loginService: LoginService, private storageService: StorageService, private elementRef: ElementRef, private router: Router){}
 
   onHttpError(errorResponse:  any): void {
     console.log('error : ',errorResponse);
@@ -35,6 +32,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.postErrorMessage = errorResponse;
     console.log(this.postErrorMessage)
   }
+
+
+  body: any = {}
 
   onSubmit(form : NgForm): void {
     console.log('in on submit : '+ form.valid);
@@ -55,16 +55,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
           }
         }
         else {
-          const _id = Object.getOwnPropertyDescriptor(result, '_id');
-          const email = Object.getOwnPropertyDescriptor(result, 'email');
-          const type = Object.getOwnPropertyDescriptor(result, 'type');
-
-          this.storageService.saveUser(_id?.value, email?.value, type?.value);
+          this.body = JSON.stringify(result);
+          this.storageService.saveUser(this.body);
           let user = this.storageService.getUser();
-          console.log(user)
           this.postError = false;
-          this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
           this.router.navigate(['/register']);
+          this.reloadPage();
           //console.log(result)
           // this.storageService.saveUser(result);
 
@@ -88,9 +84,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit() {
-    this.elementRef.nativeElement.ownerDocument
-    .body.style.backgroundColor = '#101820FF';
+  back(): void {
+    this.location.back()
   }
 }
 

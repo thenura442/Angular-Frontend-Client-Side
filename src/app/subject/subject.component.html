@@ -1,0 +1,76 @@
+<div class=" bg">
+  <div class="container">
+    <h2 class="text"> Subject Details </h2><br>
+    <nav class="navbar navbar-light bg-light search">
+      <form class="form-inline search" #search ="ngForm">
+        <input class="form-control mr-sm-2 find" name="search_id" type="text" placeholder="Search" required aria-label="Search" [(ngModel)]="body._id">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="onFind(search)">Search</button>
+      </form>
+    </nav>
+    <br>
+    <div [hidden]="!postErrorFind" class="alert alert-danger alert-class">
+      {{ postErrorMessageFind }}
+    </div>
+    <div [hidden]="!postSuccessFind" class="alert alert-success alert-class" role="alert">
+      {{ postSuccessMessageFind }}
+    </div>
+    <br><br>
+    <form class="form-css " #form ="ngForm">
+        <div class="form-group class-bottom">
+        <label for="id">Subject ID</label>
+          <input type="text" class="form-control" required id="ID" name="ID" [(ngModel)]="subjectSettings._id">
+        </div>
+        <div class="form-group">
+        <label for="name">Subject Name</label>
+          <input type="text" class="form-control" required id="name" name="name" [(ngModel)]="subjectSettings.name">
+        </div><br>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" required id="description" name="description" [(ngModel)]="subjectSettings.description">
+        </div><br>
+        <div class="form-group">
+          <label for="grade">Grade</label>
+          <select class="form-select" required aria-label="Default select example" name="grade" [(ngModel)]="subjectSettings.grade">
+            <option selected>Select Grade</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+          </select>
+        </div><br>
+        <div class="form-group">
+          <label for="lecturer">Lecturer</label>
+          <input type="text" class="form-control" required id="lecturer" name="lecturer" [(ngModel)]="subjectSettings.lecturer_id">
+        </div><br>
+
+        <div [hidden]="!postError" class="alert alert-danger alert-class">
+          {{ postErrorMessage }}
+        </div>
+        <div [hidden]="!postSuccess" class="alert alert-success alert-class" role="alert">
+          {{ postSuccessMessage }}
+        </div>
+
+        <button *ngIf="!onTrue" class="btn btn-primary button-custom" (click)="onSubmit(form)">
+          Create Subject
+        </button>
+        <div class="other-btns">
+          <button *ngIf="onTrue" class="btn btn-primary button-custom" (click)="onUpdate(form)">
+            Update Subject
+          </button><br>
+          <button *ngIf="onTrue" class="btn btn-primary button-custom " (click)="onDelete(form)">
+            Delete Subject &nbsp;
+          </button>
+        </div>
+    </form><br><br><br>
+
+  </div>
+  </div>
