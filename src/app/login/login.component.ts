@@ -1,28 +1,31 @@
-import {Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginUser } from '../interfaces/login-user';
+import { LoginUser } from '../_interfaces/login-user';
 import { LoginService } from '../services/login/login.service';
 import { StorageService } from '../services/storage/storage.service';
 import { Location } from '@angular/common';
 
 @Component({
+  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
 
 
-  constructor(private loginService: LoginService, private storageService: StorageService, private router: Router, private location: Location){}
+  constructor(private loginService: LoginService, private storageService: StorageService, private router: Router, private location: Location, private elementRef : ElementRef){}
 
   originalLoginForm: LoginUser = {
     email: "",
     password: "",
-    type: "student"
+    type: ""
   };
 
   loginForm: LoginUser = {...this.originalLoginForm}
 
+  userStaff = false;
+  loginType = "staff";
   postError = false;
   postErrorMessage = "";
 
@@ -59,8 +62,10 @@ export class LoginComponent implements OnInit {
           this.storageService.saveUser(this.body);
           let user = this.storageService.getUser();
           this.postError = false;
-          this.router.navigate(['/register']);
-          this.reloadPage();
+          this.router.navigate(['/architecture']);
+
+
+
           //console.log(result)
           // this.storageService.saveUser(result);
 
@@ -81,11 +86,31 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loginForm.type = "student";
+  }
 
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument
+    .body.style.backgroundColor = '#101820FF';
   }
 
   back(): void {
     this.location.back()
+  }
+
+  userType(): void{
+    if(this.userStaff == false){
+      this.userStaff = true;
+      this.body.type = "staff"
+      this.loginType = "student";
+      console.log(this.body.type)
+    }
+    else{
+      this.userStaff = false;
+      this.body.type = "student"
+      this.loginType = "staff";
+      console.log(this.body.type)
+    }
   }
 }
 

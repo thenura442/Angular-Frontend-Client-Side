@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { RegistrationService } from 'src/app/services/registration/registration.service';
-import { Student } from '../../interfaces/student';
+import { Student } from '../../_interfaces/student';
 
 @Component({
   selector: 'app-student-registration',

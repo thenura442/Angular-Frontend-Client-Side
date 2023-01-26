@@ -1,7 +1,7 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoginUser } from 'src/app/interfaces/login-user';
+import { LoginUser } from 'src/app/_interfaces/login-user';
 
 const API = 'http://localhost:5500/api/auth/';
 

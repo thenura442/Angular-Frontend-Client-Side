@@ -1,7 +1,8 @@
 <section class="bg">
   <div class="container-class">
-    <p class="name">Brainstorm Academy </p>
-    <img src="/public/images/brainstrom.png">"
+    <div style="display: flex; flex-direction: row;">
+      <img style="margin: auto; " src="http://localhost:5500/Files/brainstorm1.png">
+    </div>
     <form #form ="ngForm" (ngSubmit)="onSubmit(form)" >
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -25,7 +26,7 @@
                   </div>
 
                   <p class="small mb-2 pb-lg-2"><a class="text-white-50" >Forgot password?</a></p>
-                  <p class="small mb-5 pb-lg-2"><a class="text-white-50">Staff Login</a></p>
+                  <p class="small mb-5 pb-lg-2"><a (click)="userType()" class="text-white-50" >{{ loginType | titlecase }} Login</a></p>
 
                   <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
 
@@ -40,6 +41,7 @@
         {{ postErrorMessage }}
       </div>
     </form>
+
   </div>
 </section>
 

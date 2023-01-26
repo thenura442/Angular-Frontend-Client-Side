@@ -14,6 +14,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DatePipe } from '@angular/common';
 import { SubjectComponent } from './subject/subject.component';
+import { AssignmentsComponent } from './assignments/assignments.component';
+import { SubjectPageComponent } from './subject-page/subject-page.component';
+import { LecturerRegistrationComponent } from './register/lecturer-registration/lecturer-registration.component';
+import { StaffRegistrationComponent } from './register/staff-registration/staff-registration.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -24,7 +29,12 @@ import { SubjectComponent } from './subject/subject.component';
     ArchitectureComponent,
     ProfileComponent,
     DashboardComponent,
-    SubjectComponent
+    SubjectComponent,
+    AssignmentsComponent,
+    SubjectPageComponent,
+    LecturerRegistrationComponent,
+    StaffRegistrationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

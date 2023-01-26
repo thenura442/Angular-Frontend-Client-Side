@@ -8,13 +8,19 @@ import { ArchitectureComponent } from './architecture/architecture.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SubjectComponent } from './subject/subject.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AssignmentsComponent } from './assignments/assignments.component';
+import { SubjectPageComponent } from './subject-page/subject-page.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
+  { path: 'home', component: HomeComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'architecture', component: ArchitectureComponent},
   { path: 'dashboard', component: DashboardComponent},
-  { path: 'subject', component: SubjectComponent},
+  { path: 'assignment', component: AssignmentsComponent},
+  { path: 'register/subject', component: SubjectComponent},
+  { path: 'subject/:id', component: SubjectPageComponent},
   { path: 'register/student', component: StudentRegistrationComponent}
   //{ path: '',   redirectTo: '/login', pathMatch: 'full' }
   //{ path: '**', component: PageNotFoundComponent }

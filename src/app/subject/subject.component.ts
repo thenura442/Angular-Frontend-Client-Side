@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Subject } from '../interfaces/subject';
+import { Subject } from '../_interfaces/subject';
 import { SubjectService } from '../services/subject/subject.service';
 
 @Component({

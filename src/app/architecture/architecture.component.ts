@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from '../services/storage/storage.service';
 
@@ -7,14 +7,14 @@ import { StorageService } from '../services/storage/storage.service';
   templateUrl: './architecture.component.html',
   styleUrls: ['./architecture.component.css']
 })
-export class ArchitectureComponent implements OnInit{
+export class ArchitectureComponent implements OnInit, AfterViewInit{
   isShowDiv: boolean = false;
   isUser: boolean = false;
   User: boolean = false;
   user: any = '';
   Type: string | null = '';
 
-  constructor(private router: Router, private storageService: StorageService){}
+  constructor(private router: Router, private storageService: StorageService, private elementRef: ElementRef){}
 
   clickEvent(){
     this.isShowDiv = !this.isShowDiv;
@@ -22,20 +22,21 @@ export class ArchitectureComponent implements OnInit{
 
   ngOnInit(): void {
     this.User = this.storageService.isLoggedIn();
-    if(this.User == false){
-      this.isUser = false;
-      this.router.navigate(['/login'])
-    }
-    else if(this.User == true){
+    if(this.User == true){
       this.isUser = true;
       this.user = this.storageService.getUser();
       this.Type = this.user.type;
-      this.router.navigate(['/register/student']);
+      this.router.navigate(['/home']);
     }
   }
 
   logOut(): void {
     this.storageService.logOut();
+  }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument
+    .body.style.backgroundColor = 'white';
   }
 
   reloadPage(): void {

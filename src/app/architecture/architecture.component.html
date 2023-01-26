@@ -14,9 +14,9 @@
             <li [ngClass]="{'no-hover': !isUser, 'item' : isUser}" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Home</a></li>
             <li *ngIf="(isUser) && (Type == 'student')" routerLink="/dashboard" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Dashboard</a></li>
             <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/register/student" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Students</a></li>
-            <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/subject" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Subject</a></li>
+            <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/register/subject" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Subject</a></li>
             <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Lecturers</a></li>
-            <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Announcements</a></li>
+            <li *ngIf="(isUser) && (Type == 'lecturer')" routerLink="/assignment" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Assignments</a></li>
             <li *ngIf="(isUser) && (Type == 'moderator')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Staff</a></li>
             <li *ngIf="(isUser) && (Type == 'admin')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}" ><a>Moderator</a></li>
             <li [ngClass]="{'no-hover': !isUser, 'item' : isUser}" routerLink="/profile" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Profile</a></li>
