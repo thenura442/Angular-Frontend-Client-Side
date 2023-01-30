@@ -22,16 +22,19 @@
                 <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" readonly required name="address" [(ngModel)]="userSettings.address"></div>
                 <div class="col-md-12"><label class="labels">Landline</label><input type="text" class="form-control" readonly required name="landline" [(ngModel)]="userSettings.landline_no"></div>
                 <div class="col-md-12"><label class="labels">Mobile</label><input type="text" class="form-control" required name="mobile_no" [(ngModel)]="userSettings.mobile_no"></div>
-            <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" (click)="onUpdate(form)">Save Profile</button></div>
+                <div style="margin-top: 20px;">
+                  <div [hidden]="!postError" class="alert alert-danger alert-class">
+                    {{ postErrorMessage }}
+                  </div>
+                  <div [hidden]="!postSuccess" class="alert alert-success alert-class" role="alert">
+                    {{ postSuccessMessage }}
+                  </div>
+                </div>
+
+            <div class="mt-5 text-center"><button class="btn btn-primary button-custom" type="button" (click)="onUpdate(form)">Save Profile</button></div>
             </div>
         </div>
       </div>
     </form>
-  </div>
-  <div [hidden]="!postError" class="alert alert-danger alert-class">
-    {{ postErrorMessage }}
-  </div>
-  <div [hidden]="!postSuccess" class="alert alert-success alert-class" role="alert">
-    {{ postSuccessMessage }}
   </div>
 </div>

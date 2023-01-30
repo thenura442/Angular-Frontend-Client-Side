@@ -99,6 +99,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.storageService.getUser()
+    console.log(this.user)
     this.body.type = this.user.type;
     this.body._id = this.user._id;
     this.findUser(this.body);

@@ -95,7 +95,7 @@ export class SubjectComponent implements OnInit {
           this.subjectSettings = result;
           this.postErrorFind = false;
           this.postSuccessFind = true;
-          this.postSuccessMessageFind = "Found ID "+ result._id ;
+          this.postSuccessMessageFind = "Found Subject "+ result._id+ '- (Grade '+result.grade+')' ;
           this.onTrue = true;
 
           console.log(result);

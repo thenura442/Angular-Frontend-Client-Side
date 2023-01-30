@@ -7,8 +7,8 @@
       </form><br>
       <form #search_subject="ngForm">
         <div class="form-group" *ngIf="subjects.length">
-          <select class="form-select" style="margin-top: 25px;" required readonly aria-label="Default select example" name="subject" [(ngModel)]="body.subject">
-            <option selected>Select Subject</option>
+          <select class="form-select" style="margin-top: 40px;" required readonly aria-label="Default select example" name="subject" [(ngModel)]="body.subject">
+            <option value="" selected disabled hidden >Select Subject</option>
             <option *ngFor="let subject of subjects" value={{subject._id}}>{{subject.name}} - {{ subject.grade}} ({{subject._id}})</option>
           </select>
         </div><br>
@@ -40,20 +40,17 @@
         <div class="form-group" [hidden]="updateTrue" *ngIf="subjects.length">
           <label for="grade">Subject</label>
           <select class="form-select" required readonly aria-label="Default select example" name="grade" [(ngModel)]="assignmentSettings.subject">
-            <option selected>Select Subject</option>
+            <option value="" selected hidden disabled>Select Subject</option>
             <option *ngFor="let subject of subjects" value={{subject._id}}>{{subject.name}} - {{ subject.grade}} ({{subject._id}})</option>
           </select>
         </div><br>
         <div class="form-group">
           <label for="file">Upload Files</label>
-          <!-- <div style="display: flex; ">
-
-          </div> -->
-          <input type="file" #multipleInput multiple='multiple' class="form-control" required id="file" name="file" (change)="selectMultipleImage($event)">
+          <input type="file" #multipleInput multiple='multiple' class="form-control" required id="file" name="file" (change)="selectMultipleImage($event)"><br>
           <button class="btn btn-primary button-custom" (click)="uploadCreate()">
             Save Files
           </button>
-        </div><br>
+        </div>
 
         <div [hidden]="!postError" class="alert alert-danger alert-class">
           {{ postErrorMessage }}
@@ -74,14 +71,6 @@
           </button>
         </div>
     </form><br><br><br>
-
-    <div *ngIf="isFiles" style="display: flex; flex-direction: column;">
-      <div style="justify-content: center;">
-        <img src="`{{ assignmentSettings.url[0]}}`" alt="file">
-      </div>
-    </div>
-
-
   </div>
   </div>
 

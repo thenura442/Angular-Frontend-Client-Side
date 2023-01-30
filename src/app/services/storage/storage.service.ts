@@ -1,29 +1,48 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+
+const API = 'http://localhost:5500/api/auth/';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-  public USER: any = {}
-  constructor() { }
 
-  clean(): void {
-    window.sessionStorage.clear();
+  USER : any ;
+  private dataSub: BehaviorSubject<any>;
+  currentData: Observable<any>;
+
+  constructor(private http: HttpClient) {
+    this.dataSub = new BehaviorSubject<any>(
+      JSON.parse(sessionStorage.getItem("currentData")!)
+    );
+    this.currentData = this.dataSub.asObservable();
   }
 
-  public saveUser(body: any): void {
-    window.sessionStorage.removeItem(this.USER);
-    window.sessionStorage.setItem(this.USER, body);
-  }
+  // public saveUser(body: any): void {
+  //   sessionStorage.setItem('currentData',body);
+  //   this.dataSub.next(body);
+  // }
 
   public getUser(): any {
-    const user = window.sessionStorage.getItem(this.USER);
+    const user = sessionStorage.getItem(this.USER);
     if (user != null) {
       return JSON.parse(user);
     }
 
     return null;
   }
+
+  public get currentUserValue(): any {
+    return this.dataSub.value;
+  }
+
+
 
   // public getType(): any {
   //   const type = window.sessionStorage.getItem(USER_TYPE);
@@ -44,17 +63,48 @@ export class StorageService {
   // }
 
 
-  public isLoggedIn(): boolean {
-    const user = window.sessionStorage.getItem(this.USER);
-    if (user != null) {
-      return true;
-    }
+  // public isLoggedIn(): boolean {
+  //   const user = window.sessionStorage.getItem(this.USER);
+  //   if (user != null) {
+  //     return true;
+  //   }
 
-    return false;
+  //   return false;
+  // }
+
+
+  login(loginForm: any) {
+    return this.http.post<any>(API + 'login',loginForm,httpOptions).pipe(
+      map(user => {
+
+        if(!Object.hasOwn(user,'Error')){
+          const _id = Object.getOwnPropertyDescriptor(user, '_id');
+          const email = Object.getOwnPropertyDescriptor(user, 'email');
+          const type = Object.getOwnPropertyDescriptor(user, 'type');
+          const grade = Object.getOwnPropertyDescriptor(user, 'grade');
+          const dle_access = Object.getOwnPropertyDescriptor(user, 'dle_access');
+
+          let body = { _id:_id?.value , email:email?.value , type:type?.value, grade: grade?.value , dle_access: dle_access?.value }
+
+          sessionStorage.setItem("currentData", JSON.stringify(body));
+          this.dataSub.next(body);
+          sessionStorage.setItem(this.USER, JSON.stringify(body));
+          return body;
+        }
+
+        return user;
+      })
+    );
   }
 
+  public loggedIn() : boolean {
+    return !!sessionStorage.getItem('currentData');
+  }
 
-  public logOut(): void {
-    window.sessionStorage.removeItem(this.USER);
+  public logOut(): any {
+    sessionStorage.removeItem('currentData');
+    this.dataSub.next(null);
+    return this.http.get<any>(API + 'logout');
+
   }
 }

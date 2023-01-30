@@ -18,6 +18,14 @@ export class HttpRequestInterceptor implements HttpInterceptor{
   }
 }
 
-export const HttpInterceptorProviders = [
-  {provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true},
-]
+// export const HttpInterceptorProviders = [
+//   {
+//     provide: HTTP_INTERCEPTORS,
+//     useFactory: function(router: Router) {
+//       return new ErrorCatchingInterceptor(router);
+//     },
+//     useClass: HttpRequestInterceptor,
+//     multi: true,
+//     deps: [Router]
+//   },
+// ]

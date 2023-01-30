@@ -1,26 +1,24 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { StorageService } from '../services/storage/storage.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class StaffGuard implements CanActivate {
 
   constructor(private router:Router, private storageService: StorageService){}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      const currentUser = this.storageService.USER;
-      if (currentUser) {
-          // logged in so return true
+      const currentUser = this.storageService.getUser();
+      if (currentUser.type == 'staff') {
           return true;
       }
-
-      // not logged in so redirect to login page with the return url
-      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+      // unauthorized access
+      this.router.navigate(['/unauthorized']);
       return false;
   }
 

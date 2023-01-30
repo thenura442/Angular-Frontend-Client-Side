@@ -181,6 +181,11 @@ export class AssignmentsComponent {
 
 
   uploadCreate(): any {
+    if(this.filesToUpload.length == 0) {
+      console.log("null bichh")
+      return
+    }
+    console.log("bruihhh")
     const formData: any = new FormData();
     const files: Array<File> = this.filesToUpload;
     console.log(files);

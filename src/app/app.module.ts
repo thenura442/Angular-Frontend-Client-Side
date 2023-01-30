@@ -7,9 +7,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { StudentRegistrationComponent } from './register/student-registration/student-registration.component';
 
-import { HttpInterceptorProviders } from './services/httpInterceptor/http.interceptor.service';
+
 import { AppRoutingModule } from './app-routing.module';
-import { ArchitectureComponent } from './architecture/architecture.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DatePipe } from '@angular/common';
@@ -20,6 +19,10 @@ import { LecturerRegistrationComponent } from './register/lecturer-registration/
 import { StaffRegistrationComponent } from './register/staff-registration/staff-registration.component';
 import { HomeComponent } from './home/home.component';
 import { OrderByPipe } from './_custom_pipes/orderby/order-by.pipe';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HttpInterceptorProviders } from './_interceptors/error-catching/error-catching.interceptor';
+import { BlockedComponent } from './blocked/blocked.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 
 @NgModule({
@@ -27,7 +30,6 @@ import { OrderByPipe } from './_custom_pipes/orderby/order-by.pipe';
     AppComponent,
     LoginComponent,
     StudentRegistrationComponent,
-    ArchitectureComponent,
     ProfileComponent,
     DashboardComponent,
     SubjectComponent,
@@ -36,7 +38,10 @@ import { OrderByPipe } from './_custom_pipes/orderby/order-by.pipe';
     LecturerRegistrationComponent,
     StaffRegistrationComponent,
     HomeComponent,
-    OrderByPipe
+    OrderByPipe,
+    PageNotFoundComponent,
+    BlockedComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,

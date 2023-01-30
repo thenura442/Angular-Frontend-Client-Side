@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginUser } from '../_interfaces/login-user';
 import { LoginService } from '../services/login/login.service';
 import { StorageService } from '../services/storage/storage.service';
@@ -14,7 +14,11 @@ import { Location } from '@angular/common';
 export class LoginComponent implements OnInit, AfterViewInit {
 
 
-  constructor(private loginService: LoginService, private storageService: StorageService, private router: Router, private location: Location, private elementRef : ElementRef){}
+  constructor(private loginService: LoginService, private storageService: StorageService, private route: ActivatedRoute, private router: Router, private location: Location, private elementRef : ElementRef){
+    if (this.storageService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
+  }
 
   originalLoginForm: LoginUser = {
     email: "",
@@ -28,6 +32,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   loginType = "staff";
   postError = false;
   postErrorMessage = "";
+  returnUrl: string = '' ;
 
   onHttpError(errorResponse:  any): void {
     console.log('error : ',errorResponse);
@@ -43,8 +48,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     console.log('in on submit : '+ form.valid);
     if(form.valid) {
       this.postError = false;
-      console.log(this.loginForm)
-      this.loginService.login(this.loginForm).subscribe((result) => {
+      //console.log(this.loginForm)
+      this.storageService.login(this.loginForm).subscribe((result) => {
         console.log(result);
         if(Object.hasOwn(result,'Error')){
           const status = Object.getOwnPropertyDescriptor(result, 'Status');
@@ -59,12 +64,16 @@ export class LoginComponent implements OnInit, AfterViewInit {
           }
         }
         else {
-          this.body = JSON.stringify(result);
-          this.storageService.saveUser(this.body);
-          console.log(this.body)
-          let user = this.storageService.getUser();
+          // const _id = Object.getOwnPropertyDescriptor(result, '_id');
+          // const email = Object.getOwnPropertyDescriptor(result, 'email');
+          // const type = Object.getOwnPropertyDescriptor(result, 'type');
+          // const grade = Object.getOwnPropertyDescriptor(result, 'grade');
+
+          // let body = { _id:_id?.value , email:email?.value , type:type?.value, grade: grade?.value }
+          // this.storageService.saveUser(body);
+          // console.log(body);
           this.postError = false;
-          this.router.navigateByUrl("/architecture", { skipLocationChange: true });
+          this.router.navigate(['/home']);
 
           //console.log(result)
           // this.storageService.saveUser(result);
@@ -87,6 +96,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loginForm.type = "student";
+    this.storageService.currentData.subscribe(dataSub => {
+      let user = dataSub;
+      if(user != null){
+        console.log(user)
+        this.router.navigate(['/home']);
+      }
+    })
   }
 
   ngAfterViewInit() {

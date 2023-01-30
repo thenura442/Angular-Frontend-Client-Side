@@ -34,8 +34,8 @@
         </div><br>
         <div class="form-group">
           <label for="grade">Grade</label>
-          <select class="form-select" required aria-label="Default select example" name="grade" [(ngModel)]="subjectSettings.grade">
-            <option value="" selected disabled hidden>Select Grade</option>
+          <select class="form-select" required aria-label="Default select example" name="grade"  [(ngModel)]="subjectSettings.grade">
+            <option value="" disabled selected hidden>Grade</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -52,7 +52,7 @@
           </select>
         </div><br>
         <div class="form-group" *ngIf="lecturers.length">
-          <label for="grade">Subject</label>
+          <label for="grade">Lecturer</label>
           <select class="form-select" required readonly aria-label="Default select example" name="grade" [(ngModel)]="subjectSettings.lecturer_id">
             <option value="" selected disabled hidden>Select Lecturer</option>
             <option *ngFor="let lecturer of lecturers" value={{lecturer._id}}>{{lecturer.name | titlecase}} - ({{lecturer._id}})</option>
