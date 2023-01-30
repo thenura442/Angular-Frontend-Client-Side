@@ -1,16 +1,10 @@
 import { Injectable } from '@angular/core';
 
-const USER_ID = '';
-const USER_EMAIL = '';
-const USER_TYPE = '';
-
-const USER: any = {}
-
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-
+  public USER: any = {}
   constructor() { }
 
   clean(): void {
@@ -18,12 +12,12 @@ export class StorageService {
   }
 
   public saveUser(body: any): void {
-    window.sessionStorage.removeItem(USER);
-    window.sessionStorage.setItem(USER, body);
+    window.sessionStorage.removeItem(this.USER);
+    window.sessionStorage.setItem(this.USER, body);
   }
 
   public getUser(): any {
-    const user = window.sessionStorage.getItem(USER);
+    const user = window.sessionStorage.getItem(this.USER);
     if (user != null) {
       return JSON.parse(user);
     }
@@ -51,7 +45,7 @@ export class StorageService {
 
 
   public isLoggedIn(): boolean {
-    const user = window.sessionStorage.getItem(USER);
+    const user = window.sessionStorage.getItem(this.USER);
     if (user != null) {
       return true;
     }
@@ -61,6 +55,6 @@ export class StorageService {
 
 
   public logOut(): void {
-    window.sessionStorage.removeItem(USER);
+    window.sessionStorage.removeItem(this.USER);
   }
 }

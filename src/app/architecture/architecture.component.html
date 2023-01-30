@@ -2,7 +2,11 @@
   <div id="container-new">
     <header>
       <nav class="navbar bg-dark">
-        <div class="brand-title brand" >Brand Name</div>
+        <div>
+          <a class="navbar-brand" href="#">
+            <img src="http://localhost:5500/Files/_brainstorm-icon.png" width="250" alt="">
+          </a>
+        </div>
         <a style="margin-top: 18px;" class="toggle-button" (click)="clickEvent()">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -15,7 +19,7 @@
             <li *ngIf="(isUser) && (Type == 'student')" routerLink="/dashboard" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Dashboard</a></li>
             <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/register/student" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Students</a></li>
             <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/register/subject" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Subject</a></li>
-            <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Lecturers</a></li>
+            <li *ngIf="(isUser) && (Type == 'staff')" routerLink="/register/employee" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Employee</a></li>
             <li *ngIf="(isUser) && (Type == 'lecturer')" routerLink="/assignment" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Assignments</a></li>
             <li *ngIf="(isUser) && (Type == 'moderator')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Staff</a></li>
             <li *ngIf="(isUser) && (Type == 'admin')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}" ><a>Moderator</a></li>
@@ -32,8 +36,8 @@
 
     <footer>
         <div class=”footer-content”>
-          <h3>Brainstorm Academy</h3>
-          <p class="footer-p">Better than a thousand days of diligent study is one day with a great teacher.</p>
+          <h3>Brainstorm Education</h3>
+          <p class="footer-p">Better than a thousand days of diligent study is one day with a great teacher</p>
           <div *ngIf="Type != ''">
             <a class="link link-logout"  routerLink="/architecture" (click)="logOut()">Logout</a>
           </div>

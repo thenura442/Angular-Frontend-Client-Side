@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   originalLoginForm: LoginUser = {
     email: "",
     password: "",
-    type: ""
+    type: "staff"
   };
 
   loginForm: LoginUser = {...this.originalLoginForm}
@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     console.log('in on submit : '+ form.valid);
     if(form.valid) {
       this.postError = false;
+      console.log(this.loginForm)
       this.loginService.login(this.loginForm).subscribe((result) => {
         console.log(result);
         if(Object.hasOwn(result,'Error')){
@@ -60,11 +61,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
         else {
           this.body = JSON.stringify(result);
           this.storageService.saveUser(this.body);
+          console.log(this.body)
           let user = this.storageService.getUser();
           this.postError = false;
-          this.router.navigate(['/architecture']);
-
-
+          this.router.navigateByUrl("/architecture", { skipLocationChange: true });
 
           //console.log(result)
           // this.storageService.saveUser(result);
@@ -101,15 +101,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
   userType(): void{
     if(this.userStaff == false){
       this.userStaff = true;
-      this.body.type = "staff"
+      this.loginForm.type = "staff"
       this.loginType = "student";
-      console.log(this.body.type)
+      console.log(this.loginForm.type)
     }
     else{
       this.userStaff = false;
-      this.body.type = "student"
+      this.loginForm.type = "student"
       this.loginType = "staff";
-      console.log(this.body.type)
+      console.log(this.loginForm.type)
     }
   }
 }

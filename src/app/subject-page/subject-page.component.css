@@ -1,0 +1,24 @@
+.bg{
+  margin-top: 40px;
+}
+
+.filename {
+  display: inline;
+  text-decoration: none;
+  font-weight: 200;
+  color: rgb(6, 45, 129);
+}
+
+.filename:hover{
+  text-decoration: underline;
+  color: rgb(4, 27, 58);
+}
+
+
+.card-header .fa {
+  transition: .3s transform ease-in-out;
+}
+.card-header .collapsed .fa {
+  transform: rotate(90deg);
+}
+

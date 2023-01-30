@@ -1,0 +1,58 @@
+.bg {
+  background-color: white;
+  margin-top: 6%;
+  margin-bottom: 6%;
+}
+
+.find {
+  margin-right: 30px;
+}
+
+.alert-class {
+  text-align: center;
+  margin: auto;
+  min-width: 400px;
+  max-width: 530px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.form-css {
+  width: 80%;
+  margin:auto;
+  max-width: 500px;
+}
+
+.class-bottom{
+  padding-bottom: 20px;
+}
+
+.text {
+  text-align: center;
+}
+
+.other-btns {
+  float:inline-end;
+}
+
+
+.button-custom {
+  width: auto;
+  margin-top: 10px;
+  padding : 10px 30px;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+
+@media (max-width: 800px) {
+  .bg {
+    margin-top: 15%;
+    margin-bottom: 15%;
+  }
+}

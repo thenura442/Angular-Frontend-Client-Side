@@ -26,26 +26,24 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
 
   onTrue = false;
   date: any;
-  formdate = "";
   password2: string = "";
   retypepassword: string = this.password2;
-  dob!: Date;
 
   orginalStudentSettings: Student = {
     _id: "",
     name: "",
     email: "",
-    password: "thenura1",
-    nic: "200308300020",
-    dob: "2021/03/23",
-    mobile_no: "0783323261",
-    address: "272,10c-1,subhamawatha,nugegoda",
-    parent_name: "ajith wijerathne",
-    parent_no: "0724945027",
-    landline_no: "0112821161",
-    grade: "12",
-    dle_access: "open",
-    url: "http://localhost:5500/api/user/register",
+    password: "",
+    nic: "",
+    dob: "",
+    mobile_no: "",
+    address: "",
+    parent_name: "",
+    parent_no: "",
+    landline_no: "",
+    grade: "",
+    dle_access: "",
+    url: "https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg",
     type: "student"
   }
 
@@ -80,9 +78,11 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
           }
         }
         else {
+          console.log("created hutto")
           this.postError = false;
           this.postSuccess = true;
           this.postSuccessMessage = "Operation Successful with ID - " + result._id;
+          this.studentSettings = this.orginalStudentSettings;
         }
       });
     }
@@ -110,7 +110,6 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
         }
         else{
           this.studentSettings = result;
-          //console.log(this.studentSettings._id)
           this.password2 = result.password;
           this.postErrorFind = false;
           this.postSuccessFind = true;
@@ -125,6 +124,7 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
   }
 
   onUpdate(form: NgForm){
+    console.log(this.studentSettings)
     console.log("in on submit "+ form.valid);
     console.log(this.studentSettings.password)
     console.log(this.password2)
@@ -182,12 +182,10 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
     }
   }
 
-
-  // isShowDiv: boolean = false;
-
-  // clickEvent(){
-  //   this.isShowDiv = !this.isShowDiv;
-  // }
+  onCancel():void {
+    this.studentSettings = {...this.orginalStudentSettings}
+    this.messages();
+  }
 
   ngOnInit(): void {
   }
@@ -206,5 +204,7 @@ export class StudentRegistrationComponent implements OnInit, AfterViewInit {
     this.postError = false;
 
     this.onTrue = false;
+
+    this.retypepassword = '';
   }
 }

@@ -10,8 +10,12 @@
   margin-top: 5px;
 }
 
+.imagelow {
+  margin: auto;
+}
+
 .container-class {
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 .name {
@@ -34,4 +38,16 @@
   min-width: 400px;
   max-width: 530px;
   text-align: center;
+}
+
+@media (max-width:600px) {
+  .imagelow {
+    margin: auto;
+    width: 400px;
+  }
+
+  .container-class {
+    padding-bottom: 1px;
+  }
+
 }

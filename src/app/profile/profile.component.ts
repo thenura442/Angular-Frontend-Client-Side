@@ -29,15 +29,15 @@ export class ProfileComponent implements OnInit {
     _id: "",
     name: "",
     email: "",
-    password: "thenura1",
-    nic: "200308300020",
-    dob: "2021/03/23",
-    mobile_no: "0783323261",
-    address: "272,10c-1,subhamawatha,nugegoda",
-    landline_no: "0112821161",
-    dle_access: "open",
+    password: "",
+    nic: "",
+    dob: "",
+    mobile_no: "",
+    address: "",
+    landline_no: "",
+    dle_access: "",
     url: "http://localhost:5500/api/user/register",
-    type: "student"
+    type: ""
   }
 
   userSettings: any = {...this.orginalUserSettings}
@@ -115,8 +115,6 @@ export class ProfileComponent implements OnInit {
       else{
         this.userSettings = result;
         this.postError = false;
-        this.postSuccess = true;
-        this.postSuccessMessage = "Welcome "+ result.type + ' '+result._id +'!';
         this.onTrue = true;
 
         this.retypepassword = result.password;

@@ -22,6 +22,8 @@ export class SubjectComponent implements OnInit {
   postError = false;
   postErrorMessage = "";
 
+  lecturers: any[] = [];
+
   onTrue = false;
 
   orginalSubjectSettings: Subject = {
@@ -30,7 +32,7 @@ export class SubjectComponent implements OnInit {
     description: "",
     lecturer_id: "",
     grade: "",
-    url: "Stringgag/agsgag"
+    url: "http://localhost:5500/Files/_subject.jpeg"
   }
 
   subjectSettings: Subject = {...this.orginalSubjectSettings}
@@ -158,14 +160,15 @@ export class SubjectComponent implements OnInit {
     }
   }
 
-
-  // isShowDiv: boolean = false;
-
-  // clickEvent(){
-  //   this.isShowDiv = !this.isShowDiv;
-  // }
+  onCancel():void {
+    this.subjectSettings = {...this.orginalSubjectSettings}
+    this.messages();
+  }
 
   ngOnInit(): void {
+    this.subjectService.getLecturers({type: "lecturer"}).subscribe((result: any) => {
+      this.lecturers = result;
+    })
   }
 
   messages(): void{

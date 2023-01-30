@@ -22,15 +22,15 @@
       </div>
       <div class="form-group">
       <label for="name">Name</label>
-        <input type="text" class="form-control" required id="name" name="name" [(ngModel)]="studentSettings.name">
+        <input type="text" class="form-control" required id="name" name="name" placeholder="Name" [(ngModel)]="studentSettings.name">
       </div><br>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" required id="email" name="email" [(ngModel)]="studentSettings.email">
+        <input type="email" class="form-control" required id="email" name="email" placeholder="Email" [(ngModel)]="studentSettings.email">
       </div><br>
       <div class="form-group">
         <label for="nic">NIC</label>
-        <input type="text" class="form-control" required id="nic" name="nic" [(ngModel)]="studentSettings.nic">
+        <input type="text" class="form-control" required id="nic" name="nic" placeholder="NIC" [(ngModel)]="studentSettings.nic">
       </div><br>
       <div *ngIf="!onTrue" class="form-group">
         <label for="dob">Date of Birth</label>
@@ -38,12 +38,12 @@
       </div><br>
       <div class="form-group">
         <label for="mobile_no">Mobile</label>
-        <input type="text" class="form-control" required id="mobile_no" name="mobile_no" [(ngModel)]="studentSettings.mobile_no">
+        <input type="text" class="form-control" required id="mobile_no" name="mobile_no" placeholder="Mobile" [(ngModel)]="studentSettings.mobile_no">
       </div><br>
       <div class="form-group">
         <label for="grade">Grade</label>
-        <select class="form-select" required aria-label="Default select example" name="grade" [(ngModel)]="studentSettings.grade">
-          <option selected>Select Grade</option>
+        <select class="form-select" required aria-label="Default select example" name="grade"  [(ngModel)]="studentSettings.grade">
+          <option value="" disabled selected hidden>Grade</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -61,25 +61,25 @@
       </div><br>
       <div class="form-group">
         <label for="address">Address</label>
-        <input type="text" class="form-control" required id="address" name="address" [(ngModel)]="studentSettings.address">
+        <input type="text" class="form-control" required id="address"  name="address" placeholder="Address" [(ngModel)]="studentSettings.address">
       </div><br>
 
       <div class="form-group">
       <label for="parent_name">Parent Name</label>
-        <input type="text" class="form-control" required id="parent_name" name="parent_name" [(ngModel)]="studentSettings.parent_name">
+        <input type="text" class="form-control" required id="parent_name" name="parent_name" placeholder="Guardian Name" [(ngModel)]="studentSettings.parent_name">
       </div><br>
       <div class="form-group">
         <label for="parent_no">Parent Mobile</label>
-        <input type="text" class="form-control" required id="parent_no" name="parent_no" [(ngModel)]="studentSettings.parent_no">
+        <input type="text" class="form-control" required id="parent_no" name="parent_no" placeholder="Guardian Mobile" [(ngModel)]="studentSettings.parent_no">
       </div><br>
       <div class="form-group">
         <label for="landline_no">Landline</label>
-        <input type="text" class="form-control" required id="landline_no" name="landline_no" [(ngModel)]="studentSettings.landline_no">
+        <input type="text" class="form-control" required id="landline_no" name="landline_no" placeholder="Landline" [(ngModel)]="studentSettings.landline_no">
       </div><br>
       <div class="form-group">
         <label for="dle_access">DLE Access</label>
-        <select class="form-select" required aria-label="Default select example" required name="dle_access" [(ngModel)]="studentSettings.dle_access">
-          <option selected>Set DLE Access</option>
+        <select class="form-select" required aria-label="Default select example" required name="dle_access"  [(ngModel)]="studentSettings.dle_access">
+          <option value="" disabled selected hidden>Set DLE Access</option>
           <option value="open">Open</option>
           <option value="blocked">Blocked</option>
           <option value="temp">Temporary Block</option>
@@ -87,11 +87,11 @@
       </div><br>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" required id="password" name="password" [(ngModel)]="studentSettings.password">
+        <input type="password" class="form-control" required id="password" name="password" placeholder="Password"  [(ngModel)]="studentSettings.password">
       </div><br>
       <div class="form-group">
         <label for="password2">Retype Password</label>
-        <input type="password" class="form-control" required id="password2" name="password2" [(ngModel)]="retypepassword">
+        <input type="password" class="form-control" required id="password2" name="password2" placeholder="Retype Password" [(ngModel)]="retypepassword">
       </div><br>
 
       <div [hidden]="!postError" class="alert alert-danger alert-class">
@@ -110,9 +110,12 @@
         </button><br>
         <button *ngIf="onTrue" class="btn btn-primary button-custom " (click)="onDelete(form)">
           Delete Student &nbsp;
+        </button><br>
+        <button *ngIf="onTrue" class="btn btn-primary button-custom " style="width: 175px;" (click)="onCancel()">
+          Cancel &nbsp;
         </button>
       </div>
-  </form><br><br><br>
+  </form><br><br><br><br><br>
 
 </div>
 </div>

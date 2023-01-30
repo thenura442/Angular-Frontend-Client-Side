@@ -33,4 +33,8 @@ export class SubjectService {
   getLecturerSubjects(lecturer: any): any{
     return this.http.post('http://localhost:5500/api/subject/lecturer/subjects', lecturer);
   }
+
+  getLecturers(body:any):any{
+    return this.http.post('http://localhost:5500/api/user/lecturers',body)
+  }
 }

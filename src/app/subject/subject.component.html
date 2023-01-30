@@ -16,22 +16,26 @@
     </div>
     <br><br>
     <form class="form-css " #form ="ngForm">
-        <div class="form-group class-bottom">
+        <div class="form-group class-bottom" *ngIf="!onTrue">
         <label for="id">Subject ID</label>
-          <input type="text" class="form-control" required id="ID" name="ID" [(ngModel)]="subjectSettings._id">
+          <input type="text" class="form-control" required id="ID" name="ID" placeholder="Example : S001" [(ngModel)]="subjectSettings._id">
         </div>
+        <div class="form-group class-bottom" *ngIf="onTrue">
+          <label for="id">Subject ID</label>
+            <input type="text" class="form-control" required readonly id="ID" name="ID" placeholder="Example : S001" [(ngModel)]="subjectSettings._id">
+          </div>
         <div class="form-group">
         <label for="name">Subject Name</label>
-          <input type="text" class="form-control" required id="name" name="name" [(ngModel)]="subjectSettings.name">
+          <input type="text" class="form-control" required id="name" name="name" placeholder="Subject Name" [(ngModel)]="subjectSettings.name">
         </div><br>
         <div class="form-group">
           <label for="description">Description</label>
-          <input type="text" class="form-control" required id="description" name="description" [(ngModel)]="subjectSettings.description">
+          <input type="text" class="form-control" required id="description" name="description" placeholder="Subject Description" [(ngModel)]="subjectSettings.description">
         </div><br>
         <div class="form-group">
           <label for="grade">Grade</label>
           <select class="form-select" required aria-label="Default select example" name="grade" [(ngModel)]="subjectSettings.grade">
-            <option selected>Select Grade</option>
+            <option value="" selected disabled hidden>Select Grade</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -47,9 +51,12 @@
             <option value="13">13</option>
           </select>
         </div><br>
-        <div class="form-group">
-          <label for="lecturer">Lecturer</label>
-          <input type="text" class="form-control" required id="lecturer" name="lecturer" [(ngModel)]="subjectSettings.lecturer_id">
+        <div class="form-group" *ngIf="lecturers.length">
+          <label for="grade">Subject</label>
+          <select class="form-select" required readonly aria-label="Default select example" name="grade" [(ngModel)]="subjectSettings.lecturer_id">
+            <option value="" selected disabled hidden>Select Lecturer</option>
+            <option *ngFor="let lecturer of lecturers" value={{lecturer._id}}>{{lecturer.name | titlecase}} - ({{lecturer._id}})</option>
+          </select>
         </div><br>
 
         <div [hidden]="!postError" class="alert alert-danger alert-class">
@@ -68,6 +75,9 @@
           </button><br>
           <button *ngIf="onTrue" class="btn btn-primary button-custom " (click)="onDelete(form)">
             Delete Subject &nbsp;
+          </button><br>
+          <button *ngIf="onTrue" class="btn btn-primary button-custom " style="width: 175px;"  (click)="onCancel()">
+            Cancel &nbsp;
           </button>
         </div>
     </form><br><br><br>

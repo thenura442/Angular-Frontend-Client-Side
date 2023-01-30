@@ -22,7 +22,7 @@
   </div>
 </div> -->
 
-<div class="cont">
+<!-- <div class="cont">
     <div class="card">
       <h5 class="card-header">Featured</h5>
       <div class="card-body">
@@ -31,4 +31,97 @@
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
+</div> -->
+<div style="margin-bottom: 100px; margin-top: 20px;">
+  <div class="card">
+    <div class="card-body" *ngIf="subject">
+      <h5 class="card-title" style="font-weight: 600;">Welcome to {{ subject._id }} - {{ subject.name }} (Grade {{ subject.grade }})</h5>
+      <p class="card-text" style="font-weight: 400;">{{ subject.description }}</p>
+    </div>
+  </div>
+
+
+  <div style=" padding: 20px; display: block;" *ngIf="assignment.length > 1">
+    <h2>Assignments</h2>
+  </div>
+
+
+  <div *ngIf="assignment.length > 1">
+      <div class="container" >
+        <p><strong>Note:</strong> Please read the instructions carefully and complete the assignment activities prior to the next session as re-dos will not be accepted.</p>
+        <div *ngFor="let file of assignment | orderBy:'title'">
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header">
+              <a class="card-link" style="text-decoration: none; font-size: 20px; color: black; font-weight: 500;" data-toggle="collapse" href="#{{file.id}}">
+                {{file.title}}
+              </a>
+            </div>
+            <div id="{{file.id}}" class="collapse">
+              <div class="card-body">
+                {{file.description}}
+              </div>
+              <div style="display: flex; flex-direction: column; flex-wrap: wrap; padding: 17px; text-decoration: none;">
+                  <div *ngFor="let i = index of file.url;">
+                    <a target="_blank" href="{{file.url[i].url}}" style="text-decoration: none;">
+                      <img src="{{file.url[i].img}}" alt="Forest" style="width:30px; margin: 10px;">
+                      <p class="filename">{{file.url[i].file.originalname}}</p>
+                    </a>
+                  </div>
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+<!-- <div class="container bg">
+  <h2>{{ subject}}</h2>
+  <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header">
+        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </div>
+      <div id="collapseOne" class="collapse show" >
+        <div class="card-body">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: row;">
+        <div>
+          <a target="_blank" href="http://localhost:5500/Files/10749196_L.R.T.D.Wijerathne.pdf">
+            <img src="http://localhost:5500/Files/_pdf.jpeg" alt="Forest" style="width:70px; margin: 5px;">
+          </a>
+        </div>
+        <div>
+          <a target="_blank" href="http://localhost:5500/Files/10749196_L.R.T.D.Wijerathne.pdf">
+            <img src="http://localhost:5500/Files/_pdf.jpeg" alt="Forest" style="width:70px; margin: 5px;">
+          </a>
+        </div>
+        <div>
+          <a target="_blank" href="http://localhost:5500/Files/10749196_L.R.T.D.Wijerathne.pdf">
+            <img src="http://localhost:5500/Files/_pdf.jpeg" alt="Forest" style="width:70px; margin: 5px;">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+        Collapsible Group Item #2
+      </a>
+      </div>
+      <div id="collapseTwo" class="collapse">
+        <div class="card-body">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

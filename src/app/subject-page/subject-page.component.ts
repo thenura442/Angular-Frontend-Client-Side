@@ -13,16 +13,19 @@ export class SubjectPageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private storageService: StorageService, private assignmentService: AssignmentsService, private subjectService: SubjectService){}
 
+  subject: any = '';
+  assignment: any = '';
+
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
     let user = this.storageService.getUser();
     let grade = user.grade;
     this.assignmentService.getAssignments({subject: id, grade: grade}).subscribe((result : any) => {
-      console.log(result);
+      this.assignment = result;
     })
 
     this.subjectService.findId({_id:id}).subscribe((result : any) => {
-      console.log(result);
+      this.subject = result
     })
   }
 }

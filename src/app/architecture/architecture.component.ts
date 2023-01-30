@@ -32,6 +32,8 @@ export class ArchitectureComponent implements OnInit, AfterViewInit{
 
   logOut(): void {
     this.storageService.logOut();
+    this.storageService.clean();
+    this.router.navigateByUrl("/login", { skipLocationChange: true });
   }
 
   ngAfterViewInit() {

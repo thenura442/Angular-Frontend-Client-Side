@@ -19,6 +19,7 @@ import { SubjectPageComponent } from './subject-page/subject-page.component';
 import { LecturerRegistrationComponent } from './register/lecturer-registration/lecturer-registration.component';
 import { StaffRegistrationComponent } from './register/staff-registration/staff-registration.component';
 import { HomeComponent } from './home/home.component';
+import { OrderByPipe } from './_custom_pipes/orderby/order-by.pipe';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { HomeComponent } from './home/home.component';
     SubjectPageComponent,
     LecturerRegistrationComponent,
     StaffRegistrationComponent,
-    HomeComponent
+    HomeComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
