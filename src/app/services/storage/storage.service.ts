@@ -6,7 +6,7 @@ const URL = 'http://localhost:5500/';
 const PATH = 'api/auth/';
 
 const httpOptions = {
-  headers: new HttpHeaders({  'access-control-allow-origin': '*' })
+  headers: new HttpHeaders({ 'Access-Control-Allow-Origin': 'https://cms-dle.netlify.app' })
 }
 
 
