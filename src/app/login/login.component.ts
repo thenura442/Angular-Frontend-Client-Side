@@ -2,7 +2,6 @@ import {AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginUser } from '../_interfaces/login-user';
-import { LoginService } from '../services/login/login.service';
 import { StorageService } from '../services/storage/storage.service';
 import { Location } from '@angular/common';
 
@@ -14,7 +13,7 @@ import { Location } from '@angular/common';
 export class LoginComponent implements OnInit, AfterViewInit {
 
 
-  constructor(private loginService: LoginService, private storageService: StorageService, private route: ActivatedRoute, private router: Router, private location: Location, private elementRef : ElementRef){
+  constructor( private storageService: StorageService, private route: ActivatedRoute, private router: Router, private location: Location, private elementRef : ElementRef){
     if (this.storageService.currentUserValue) {
       this.router.navigate(['/']);
     }
@@ -74,7 +73,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
           // console.log(body);
           this.postError = false;
           let user = this.storageService.getUser();
-          if(user.dle_access == 'block'){
+          if(user.dle_access == 'blocked'){
             this.router.navigate(['/blocked'])
           }
           this.router.navigate(['/home']);

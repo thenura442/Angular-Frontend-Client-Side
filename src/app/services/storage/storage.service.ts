@@ -2,7 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 
-const API = 'http://localhost:5500/api/auth/';
+const URL = 'http://localhost:5500/';
+const PATH = 'api/auth/';
 
 
 @Injectable({
@@ -21,11 +22,6 @@ export class StorageService {
     this.currentData = this.dataSub.asObservable();
   }
 
-  // public saveUser(body: any): void {
-  //   sessionStorage.setItem('currentData',body);
-  //   this.dataSub.next(body);
-  // }
-
   public getUser(): any {
     const user = localStorage.getItem(this.USER);
     if (user != null) {
@@ -40,38 +36,8 @@ export class StorageService {
   }
 
 
-
-  // public getType(): any {
-  //   const type = window.sessionStorage.getItem(USER_TYPE);
-  //   if (type != null && type != 'auth-type') {
-  //     return type;
-  //   }
-
-  //   return null;
-  // }
-
-  // public getEmail(): any {
-  //   const email = window.sessionStorage.getItem(USER_EMAIL);
-  //   if (email != null && email != 'auth-type') {
-  //     return email;
-  //   }
-
-  //   return null;
-  // }
-
-
-  // public isLoggedIn(): boolean {
-  //   const user = window.sessionStorage.getItem(this.USER);
-  //   if (user != null) {
-  //     return true;
-  //   }
-
-  //   return false;
-  // }
-
-
   login(loginForm: any) {
-    return this.http.post<any>(API + 'login',loginForm).pipe(
+    return this.http.post<any>(URL+PATH+'login',loginForm).pipe(
       map(user => {
 
         if(!Object.hasOwn(user,'Error')){
@@ -98,10 +64,10 @@ export class StorageService {
     return !!localStorage.getItem('currentData');
   }
 
-  public logOut(): any {
+  public logOut():Observable<any> {
     localStorage.removeItem('currentData');
     this.dataSub.next(null);
-    return this.http.get<any>(API + 'logout');
+    return this.http.get<any>(URL+PATH+'logout');
 
   }
 }

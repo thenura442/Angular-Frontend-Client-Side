@@ -9,7 +9,7 @@
           <p style="text-align: center; margin: auto; margin-top: 5px; width: 80%;"><strong>Note:</strong> If Staff has Joined and you fail to respond within 5 minutes the live chat will be deleted.</p>
           <p style="text-align: center; margin: auto; margin-top: 15px; margin-bottom: 25px; width: 80%;">If a Staff member fails to respond within 5 - 15 minutes, Please email your Issue <a class="mail" href="mailto:adalanane111@gmail.com">Here</a>.</p>
          <button type="button" id="send" (click)="startChat()">Start Chat</button><br><br>
-         <button *ngIf="chatTrue" type="button" id="send" (click)="chatNow()">Click to Chat</button><br><br>
+         <button *ngIf="chatTrue" type="button" id="send" (click)="chatNow()">Join Room</button><br><br>
       </form>
   </div>
   <div *ngIf="Type != 'student' &&  Type == 'staff'">

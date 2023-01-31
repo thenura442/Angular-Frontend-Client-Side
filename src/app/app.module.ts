@@ -16,7 +16,6 @@ import { SubjectComponent } from './subject/subject.component';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { SubjectPageComponent } from './subject-page/subject-page.component';
 import { LecturerRegistrationComponent } from './register/lecturer-registration/lecturer-registration.component';
-import { StaffRegistrationComponent } from './register/staff-registration/staff-registration.component';
 import { HomeComponent } from './home/home.component';
 import { OrderByPipe } from './_custom_pipes/orderby/order-by.pipe';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -25,6 +24,8 @@ import { BlockedComponent } from './blocked/blocked.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { RoomComponent } from './room/room.component';
 import { ChatComponent } from './chat/chat.component';
+import { ClientErrorComponent } from './client-error/client-error.component';
+import { ServerErrorComponent } from './server-error/server-error.component';
 
 
 @NgModule({
@@ -38,14 +39,15 @@ import { ChatComponent } from './chat/chat.component';
     AssignmentsComponent,
     SubjectPageComponent,
     LecturerRegistrationComponent,
-    StaffRegistrationComponent,
     HomeComponent,
     OrderByPipe,
     PageNotFoundComponent,
     BlockedComponent,
     UnauthorizedComponent,
     RoomComponent,
-    ChatComponent
+    ChatComponent,
+    ClientErrorComponent,
+    ServerErrorComponent,
   ],
   imports: [
     BrowserModule,

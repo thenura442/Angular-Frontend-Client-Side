@@ -36,10 +36,17 @@ export class AppComponent implements OnInit{
   }
 
   logOut(): void {
-
-    this.storageService.logOut();
-    this.router.navigate(["/login"]);
-    this.reloadPage();
+    this.storageService.logOut().subscribe((result) => {
+      console.log(result);
+      if(Object.hasOwn(result,'Error')){
+        console.log(result);
+      }
+      else {
+        this.Type = 'none';
+        console.log(result);
+        this.reloadPage();
+      }
+    });
   }
 
   ngAfterViewInit() {

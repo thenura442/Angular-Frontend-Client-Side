@@ -3,30 +3,37 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Assignment } from '../../_interfaces/assignment';
 
+
+const URL = 'http://localhost:5500/';
+const PATH = 'api/assignment/';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class AssignmentsService {
+
+
 
   constructor(private http: HttpClient) { }
 
   postAssignmentForm(assignmentSettings: Assignment) : Observable<Assignment> {
-    return this.http.post<Assignment>('http://localhost:5500/api/assignment/register',assignmentSettings);
+    return this.http.post<Assignment>(URL+PATH+'register',assignmentSettings);
   }
 
   findId(body: any) : any {
-    return this.http.post('http://localhost:5500/api/assignment/get/id', body);
+    return this.http.post(URL+PATH+'get/id', body);
   }
 
   updateAssignment(assignmentSettings: Assignment) : Observable<Assignment>  {
-    return this.http.put<Assignment>('http://localhost:5500/api/assignment/update/id', assignmentSettings);
+    return this.http.put<Assignment>(URL+PATH+'update/id', assignmentSettings);
   }
 
   deleteAssignment(deleteSettings: Assignment) : Observable<Assignment> {
-    return this.http.post<Assignment>('http://localhost:5500/api/assignment/delete/id', deleteSettings);
+    return this.http.post<Assignment>(URL+PATH+'delete/id', deleteSettings);
   }
 
   getAssignments(body: any) : any {
-    return this.http.post('http://localhost:5500/api/assignment/get/assignments', body);
+    return this.http.post(URL+PATH+'get/assignments', body);
   }
 }

@@ -19,10 +19,9 @@
             <li *ngIf="(Type == 'student')" routerLink="/dashboard" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Dashboard</a></li>
             <li *ngIf="(Type == 'staff')" routerLink="/register/student" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Students</a></li>
             <li *ngIf="(Type == 'staff')" routerLink="/register/subject" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Subject</a></li>
-            <li *ngIf="(Type == 'staff')" routerLink="/register/employee" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Employee</a></li>
+            <li *ngIf="(Type == 'admin')" routerLink="/register/employee" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Employee</a></li>
             <li *ngIf="(Type == 'lecturer')" routerLink="/assignment" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Assignments</a></li>
-            <li *ngIf="(Type == 'moderator')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Staff</a></li>
-            <li *ngIf="(Type == 'admin')" routerLink="/home" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}" ><a>Moderator</a></li>
+            <li *ngIf="(Type == 'student') || (Type == 'staff')" routerLink="/room" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Live Chat</a></li>
             <li *ngIf="isUser" routerLink="/profile" routerLinkActive="active-link no-hover" [routerLinkActiveOptions]="{exact:true}"><a>Profile</a></li>
           </ul>
         </div>
@@ -38,7 +37,7 @@
           <h3>Brainstorm Education</h3>
           <p class="footer-p">Better than a thousand days of diligent study is one day with a great teacher</p>
           <div *ngIf="Type != ''">
-            <a class="link link-logout"  routerLink="/architecture" (click)="logOut()">Logout</a>
+            <a class="link link-logout"  routerLink="/login" (click)="logOut()">Logout</a>
           </div>
         </div>
         <br>

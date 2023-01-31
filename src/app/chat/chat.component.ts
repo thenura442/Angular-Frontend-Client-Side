@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SocketService } from '../services/socket/socket.service';
 import { StorageService } from '../services/storage/storage.service';
 
@@ -19,7 +19,7 @@ export class ChatComponent {
   Type: string = '';
   chatTrue: boolean = false;
 
-  constructor(private socketService:SocketService, private activatedRoute: ActivatedRoute, private storageService:StorageService){
+  constructor(private socketService:SocketService, private activatedRoute: ActivatedRoute, private storageService:StorageService, private router:Router) {
       this.id = this.activatedRoute.snapshot.paramMap.get('id');
       console.log(this.id);
       let user = this.storageService.getUser();
@@ -68,5 +68,10 @@ export class ChatComponent {
 
   deleteChat(): void{
     this.socketService.delete('delete-chat',this.id);
+    this.router.navigate(['/room']);
+  }
+
+  back(): void{
+    this.router.navigate(['/room']);
   }
 }

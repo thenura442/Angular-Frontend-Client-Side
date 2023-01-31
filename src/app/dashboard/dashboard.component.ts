@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
     description: "",
     lecturer_id: "",
     grade: "",
-    url: "Stringgag/agsgag"
+    url: "http://localhost:5500/Files/_subject.jpeg"
   }
 
   subjectSettings: Subject = {...this.orginalSubjectSettings}

@@ -24,6 +24,7 @@ import { StudentGuard } from './_guards/student/student.guard';
 import { LecturerGuard } from './_guards/lecturer/lecturer.guard';
 import { RoomComponent } from './room/room.component';
 import { ChatComponent } from './chat/chat.component';
+import { ChatGuard } from './_guards/chat/chat.guard';
 
 const appRoutes: Routes = [
   { path: 'home',   component: HomeComponent , canActivate: [AuthGuard, BlockedGuard]},
@@ -34,8 +35,8 @@ const appRoutes: Routes = [
   { path: 'register/employee', component: LecturerRegistrationComponent, canActivate: [AuthGuard, BlockedGuard, AdminGuard]},
   { path: 'register/student', component: StudentRegistrationComponent, canActivate: [AuthGuard, BlockedGuard, StaffGuard]},
   { path: 'dashboard/:id', component: SubjectPageComponent, canActivate: [AuthGuard, BlockedGuard, StudentGuard]},
-  { path: 'room', component: RoomComponent, canActivate: [AuthGuard, BlockedGuard]},
-  { path: 'room/:id', component: ChatComponent, canActivate: [AuthGuard, BlockedGuard] },
+  { path: 'room', component: RoomComponent, canActivate: [AuthGuard, BlockedGuard, ChatGuard]},
+  { path: 'room/:id', component: ChatComponent, canActivate: [AuthGuard, BlockedGuard, ChatGuard] },
   { path: 'login', component: LoginComponent},
   { path: 'blocked', component: BlockedComponent, canActivate: [AuthGuard]},
   { path: 'unauthorized', component: UnauthorizedComponent, canActivate: [AuthGuard, BlockedGuard]},

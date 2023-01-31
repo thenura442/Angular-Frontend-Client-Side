@@ -55,13 +55,11 @@ export class RoomComponent {
 
   startChat(){
     this.body.room = this.newRoom
-    console.log(this.body.room + ' what')
+    console.log(this.body.room)
     this.socketService.newRoom(this.body).subscribe((room) => {
       console.log(room);
     })
     this.chatTrue = true;
-
-    //this.router.navigate(['/room/'+this.newRoom]);
   }
 
   chatNow(){
