@@ -36,8 +36,10 @@ export class AppComponent implements OnInit{
   }
 
   logOut(): void {
+
     this.storageService.logOut();
     this.router.navigate(["/login"]);
+    this.reloadPage();
   }
 
   ngAfterViewInit() {

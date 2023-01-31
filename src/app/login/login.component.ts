@@ -73,6 +73,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
           // this.storageService.saveUser(body);
           // console.log(body);
           this.postError = false;
+          let user = this.storageService.getUser();
+          if(user.dle_access == 'block'){
+            this.router.navigate(['/blocked'])
+          }
           this.router.navigate(['/home']);
 
           //console.log(result)

@@ -1,12 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 
 const API = 'http://localhost:5500/api/auth/';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +16,7 @@ export class StorageService {
 
   constructor(private http: HttpClient) {
     this.dataSub = new BehaviorSubject<any>(
-      JSON.parse(sessionStorage.getItem("currentData")!)
+      JSON.parse(localStorage.getItem("currentData")!)
     );
     this.currentData = this.dataSub.asObservable();
   }
@@ -30,7 +27,7 @@ export class StorageService {
   // }
 
   public getUser(): any {
-    const user = sessionStorage.getItem(this.USER);
+    const user = localStorage.getItem(this.USER);
     if (user != null) {
       return JSON.parse(user);
     }
@@ -74,7 +71,7 @@ export class StorageService {
 
 
   login(loginForm: any) {
-    return this.http.post<any>(API + 'login',loginForm,httpOptions).pipe(
+    return this.http.post<any>(API + 'login',loginForm).pipe(
       map(user => {
 
         if(!Object.hasOwn(user,'Error')){
@@ -86,9 +83,9 @@ export class StorageService {
 
           let body = { _id:_id?.value , email:email?.value , type:type?.value, grade: grade?.value , dle_access: dle_access?.value }
 
-          sessionStorage.setItem("currentData", JSON.stringify(body));
+          localStorage.setItem("currentData", JSON.stringify(body));
           this.dataSub.next(body);
-          sessionStorage.setItem(this.USER, JSON.stringify(body));
+          localStorage.setItem(this.USER, JSON.stringify(body));
           return body;
         }
 
@@ -98,11 +95,11 @@ export class StorageService {
   }
 
   public loggedIn() : boolean {
-    return !!sessionStorage.getItem('currentData');
+    return !!localStorage.getItem('currentData');
   }
 
   public logOut(): any {
-    sessionStorage.removeItem('currentData');
+    localStorage.removeItem('currentData');
     this.dataSub.next(null);
     return this.http.get<any>(API + 'logout');
 

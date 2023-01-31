@@ -23,6 +23,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HttpInterceptorProviders } from './_interceptors/error-catching/error-catching.interceptor';
 import { BlockedComponent } from './blocked/blocked.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { RoomComponent } from './room/room.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
     OrderByPipe,
     PageNotFoundComponent,
     BlockedComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    RoomComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

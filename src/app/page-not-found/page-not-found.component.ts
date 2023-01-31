@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,13 +6,17 @@ import { Router } from '@angular/router';
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.css']
 })
-export class PageNotFoundComponent {
+export class PageNotFoundComponent implements AfterViewInit{
 
-
-  constructor(private router:Router){}
+  constructor(private router:Router, private elementRef: ElementRef){}
 
   backHome():void {
     this.router.navigate(['/home']);
+  }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument
+    .body.style.backgroundColor = 'white';
   }
 
 }

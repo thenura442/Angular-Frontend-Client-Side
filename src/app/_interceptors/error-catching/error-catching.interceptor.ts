@@ -10,7 +10,7 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
   constructor(private router: Router) {}
 
   private handleAuthError(err: HttpErrorResponse): Observable<any> {
-    if (err.status === 400 || err.status === 401 || err.status === 402 || err.status === 403 || err.status === 404 || err.status === 405) {
+    if (err.status === 406) {
         this.router.navigateByUrl('/client-error');
         return of(err.message);
     }
@@ -20,7 +20,7 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     req = req.clone({
-      withCredentials: true
+      withCredentials: true,
     });
 
     return next.handle(req).pipe(catchError(x=> this.handleAuthError(x)));
