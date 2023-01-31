@@ -5,6 +5,10 @@ import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 const URL = 'http://localhost:5500/';
 const PATH = 'api/auth/';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Access-Control-Allow-Origin: ': 'https://cms-dle.netlify.app/' })
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +41,7 @@ export class StorageService {
 
 
   login(loginForm: any) {
-    return this.http.post<any>(URL+PATH+'login',loginForm).pipe(
+    return this.http.post<any>(URL+PATH+'login',loginForm,httpOptions).pipe(
       map(user => {
 
         if(!Object.hasOwn(user,'Error')){
@@ -67,7 +71,7 @@ export class StorageService {
   public logOut():Observable<any> {
     localStorage.removeItem('currentData');
     this.dataSub.next(null);
-    return this.http.get<any>(URL+PATH+'logout');
+    return this.http.get<any>(URL+PATH+'logout',httpOptions);
 
   }
 }
