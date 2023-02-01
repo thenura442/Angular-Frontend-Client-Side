@@ -10,7 +10,7 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
   constructor(private router: Router) {}
 
   private handleAuthError(err: HttpErrorResponse): Observable<any> {
-    if (err.status === 406) {
+    if (err.status === 405) {
         this.router.navigateByUrl('/client-error');
         return of(err.message);
     }

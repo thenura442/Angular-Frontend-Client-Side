@@ -1,12 +1,16 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from 'src/app/_interfaces/employee';
 import { Student } from '../../_interfaces/student';
 
-//const URL = 'http://localhost:5500/';
-const URL = 'https://cmc-dle-backend.onrender.com/';
+const URL = 'http://localhost:5500/';
+//const URL = 'https://cmc-dle-backend.onrender.com/';
 const PATH = 'api/user/';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Access-Control-Allow-Origin': 'https://cms-dle.netlify.app/' })
+}
 
 @Injectable({
   providedIn: 'root'
