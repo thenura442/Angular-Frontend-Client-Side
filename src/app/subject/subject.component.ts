@@ -32,7 +32,7 @@ export class SubjectComponent implements OnInit {
     description: "",
     lecturer_id: "",
     grade: "",
-    url: "http://localhost:5500/Files/_subject.jpeg"
+    url: "https://cmc-dle-backend.onrender.com/Files/_subject.jpeg"
   }
 
   subjectSettings: Subject = {...this.orginalSubjectSettings}

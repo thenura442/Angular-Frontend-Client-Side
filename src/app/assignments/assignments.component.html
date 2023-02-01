@@ -26,16 +26,16 @@
     <form class="form-css " #form ="ngForm">
         <div class="form-group">
         <label for="id">ID</label>
-          <input *ngIf="!updateTrue" type="text" class="form-control" required id="id" name="id" [(ngModel)]="assignmentSettings.id">
+          <input *ngIf="!updateTrue" type="text" class="form-control" placeholder="Example: S001-A01" required id="id" name="id" [(ngModel)]="assignmentSettings.id">
           <input *ngIf="updateTrue" type="text" class="form-control" readonly required id="id" name="id" [(ngModel)]="assignmentSettings.id">
         </div><br>
         <div class="form-group">
         <label for="title">Assignment Title</label>
-          <input type="text" class="form-control" required id="title" name="title" [(ngModel)]="assignmentSettings.title">
+          <input type="text" class="form-control" placeholder="Example: Assignment 01" required id="title" name="title" [(ngModel)]="assignmentSettings.title">
         </div><br>
         <div class="form-group">
           <label for="description">Description</label>
-          <input type="text" class="form-control" required id="description" name="description" [(ngModel)]="assignmentSettings.description">
+          <input type="text" class="form-control" placeholder="Example: This Assignment is on ...." required id="description" name="description" [(ngModel)]="assignmentSettings.description">
         </div><br>
         <div class="form-group" [hidden]="updateTrue" *ngIf="subjects.length">
           <label for="grade">Subject</label>

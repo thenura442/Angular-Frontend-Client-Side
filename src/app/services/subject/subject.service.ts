@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Subject } from 'src/app/_interfaces/subject';
 
-const URL = 'http://localhost:5500/';
+//const URL = 'http://localhost:5500/';
+const URL = 'https://cmc-dle-backend.onrender.com/';
 const PATH = 'api/';
 
 @Injectable({

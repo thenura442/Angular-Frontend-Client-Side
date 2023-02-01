@@ -44,8 +44,8 @@ export class AppComponent implements OnInit{
       else {
         this.Type = 'none';
         console.log(result);
-        this.reloadPage();
       }
+      this.reloadPage();
     });
   }
 

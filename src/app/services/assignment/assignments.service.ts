@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { Assignment } from '../../_interfaces/assignment';
 
 
-const URL = 'http://localhost:5500/';
+//const URL = 'http://localhost:5500/';
+const URL = 'https://cmc-dle-backend.onrender.com/';
 const PATH = 'api/assignment/';
 
 @Injectable({
