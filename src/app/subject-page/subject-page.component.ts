@@ -15,6 +15,7 @@ export class SubjectPageComponent implements OnInit {
 
   subject: any = '';
   assignment: any = '';
+  usernot = '';
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
