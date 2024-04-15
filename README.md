@@ -24,7 +24,7 @@ The Dynamic Learning Environment (DLE) Web App is a comprehensive online learnin
 #### Languages
 
 - Html/Css - (Used for user interface development)
-- Typescript - (Used for application 
+- Typescript - (Used for application logic)
 
 #### Frameworks
 
